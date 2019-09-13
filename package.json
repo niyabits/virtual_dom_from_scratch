@@ -1,0 +1,16 @@
+{
+  "name": "vdom",
+  "version": "1.0.0",
+  "description": "",
+  "main": "vdom.js",
+  "scripts": {
+    "compile": "babel index.js --out-file compiled.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Yash Gupta",
+  "license": "MIT",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-react-jsx": "^6.24.1"
+  }
+}
