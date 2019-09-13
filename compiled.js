@@ -67,25 +67,30 @@ function h(type, props, ...children) {
 }
 
 function view(count) {
-  //@
+  const r = [...Array(count).keys()];
   return h(
     'ul',
-    { id: 'cool', className: 'foo' },
-    h(
-      'li',
-      { className: 'test' },
-      'text 1'
-    ),
-    h(
+    { id: 'cool', className: `my-class-${count % 3}` },
+    r.map(n => h(
       'li',
       null,
-      'text 2'
-    )
+      'item ',
+      (count * n).toString()
+    ))
   );
 }
 
-function tick(el, count) {}
+function tick(el, count) {
+  const patches = diff(view(count + 1), view(count));
+  patch(el, patches);
+  console.log(count, patches);
+  if (count > 20) {
+    return;
+  }
+  setTimeout(() => tick(el, count + 1), 500);
+}
 
 function render(el) {
   el.appendChild(createElement(view(0)));
+  setTimeout(() => tick(el, 0), 500);
 }
